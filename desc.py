@@ -1,10 +1,10 @@
-#
+##
 ## Create interface descriptions based off LLDP neighbors
 ## show lldp neighbor on switch
 ## copy/paste meat of output containing IPs and hostnames to a file
 ## run this script against file
 ## python desc.py <file>
-#
+##
 
 import sys
 import re
