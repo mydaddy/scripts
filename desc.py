@@ -56,5 +56,5 @@ for lldpNeighbor in lldpNeighbors:
 
 for nei in neighbors:
 	print('interface {0}'.format(nei['interface']))
-	print('description {0}"type":"lan","mon":1,"alert":{1},"desc":"{2}"{3}'.format('{', nei['alert'], nei['description'], '}'))
+	print('description {0}"TYPE":"LAN","MON":1,"ALERT":{1},"DESC":"{2}"{3}'.format('{', nei['alert'], nei['description'], '}'))
 

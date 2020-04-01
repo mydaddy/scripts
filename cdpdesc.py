@@ -21,7 +21,7 @@ neighbors = []
 alert = 1
 
 for cdpNeighbor in cdpNeighbors:
-	hostname = re.findall(r'^[^SEP][a-zA-Z]+\d{1,}', cdpNeighbor)
+	hostname = re.findall(r'^[^SEP|sep][a-zA-Z]{4}\w+', cdpNeighbor)
 
 	if hostname:
 		description = hostname[0].upper()
