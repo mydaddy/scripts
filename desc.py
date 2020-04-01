@@ -31,8 +31,9 @@ for lldpNeighbor in lldpNeighbors:
 	# maybe pass an argument for Vlans like -vlan or create a seperate script since that output comes from show int desc, not from show lldp nei
 	# also need to handle show cdp nei output
 	
-	hostname = re.findall(r'^[^SEP][a-zA-Z]+\d{1,}', lldpNeighbor)
-	
+	# hostname = re.findall(r'^[^SEP][a-zA-Z]+\d{1,}', lldpNeighbor) - failed on CENCO225
+	hostname = re.findall(r'^[^SEP|sep][a-zA-Z]{4}\w+', lldpNeighbor) # added lowercase sep for phones and first 5 chars of hostname are alpha
+
 	if hostname:
 		hostname = hostname[0].upper()
 
@@ -44,7 +45,7 @@ for lldpNeighbor in lldpNeighbors:
 			alert = 1
 			localInterface = hostname.replace('VL', 'Vlan')
 			description = re.findall(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/\w+$', lldpNeighbor)[0]
-		elif re.search(r'\w\w\w\s\d+\/\d+\/\d+|\w\w\w\s\d+\/\d+', lldpNeighbor):
+		elif re.search(r'\w\w\w\s\d+\/\d+\/\d+|\w\w\w\s\d+\/\d+', lldpNeighbor): # WTF is this for?
 			print('!!! FOUND ONE !!!')
 		else:
 			alert = 1
@@ -55,5 +56,5 @@ for lldpNeighbor in lldpNeighbors:
 
 for nei in neighbors:
 	print('interface {0}'.format(nei['interface']))
-	print('description {0}"TYPE":"LAN","MON":1,"ALERT":{1},"DESC":"{2}"{3}'.format('{', nei['alert'], nei['description'], '}'))
+	print('description {0}"type":"lan","mon":1,"alert":{1},"desc":"{2}"{3}'.format('{', nei['alert'], nei['description'], '}'))
 
