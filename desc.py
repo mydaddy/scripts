@@ -32,7 +32,9 @@ for lldpNeighbor in lldpNeighbors:
 	# also need to handle show cdp nei output
 	
 	# hostname = re.findall(r'^[^SEP][a-zA-Z]+\d{1,}', lldpNeighbor) - failed on CENCO225
-	hostname = re.findall(r'^[^SEP|sep][a-zA-Z]{4}\w+', lldpNeighbor) # added lowercase sep for phones and first 5 chars of hostname are alpha
+	# added lowercase sep for phones and first 5 chars ({4} - 0 to 4) of hostname are alpha
+	# added hostname begin with Vl## (|^Vl\d+) for Vlans from show interface description
+	hostname = re.findall(r'^[^SEP|sep][a-zA-Z]{4}\w+|^Vl\d+', lldpNeighbor)
 
 	if hostname:
 		hostname = hostname[0].upper()
