@@ -34,7 +34,9 @@ for cdpNeighbor in cdpNeighbors:
 		remoteInterface, remotePort = re.findall(r'^\w\w|\d+\/\d+\/\d+|\d+\/\d+', remoteInterface)
 		description = f'{description} {remoteInterface}{remotePort}'
 		
-		if 'RWA' in description: # normally only RWA's run CDP not LLDP, will combine desc.py and cdpdesc.py to one script
+		# normally only RWAs run CDP not LLDP, will combine desc.py and cdpdesc.py to one script
+		# added SWDs for interface descriptions on RWAs
+		if 'RWA' in description or 'SWD' in description:
 			neighbors.append({'interface':localInterface, 'alert':alert, 'description':description})
 
 for nei in neighbors:
