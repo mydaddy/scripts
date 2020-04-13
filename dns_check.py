@@ -1,5 +1,5 @@
 #
-## ssh to 10.252.30.10 (Aruba 8.5 master)
+## ssh to Aruba 8.5 master
 ## no paging
 ## show switches
 ## copy/paste meat of output containing IPs and hostnames to a file
